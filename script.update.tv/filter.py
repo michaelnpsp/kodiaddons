@@ -50,9 +50,13 @@ blacklist = L2D([
 ])
 
 # custom filter priorities for some channels
+filter_nogeo = { '':2, 'GEO':3 }
+
 filters = {
-	"La 1": { 'GEO':3,'':2 },
-	"La 2": { 'GEO':3,'':2 },
+	"La 1":     filter_nogeo,
+	"La 2":     filter_nogeo,
+	"Antena 3": filter_nogeo,
+	"laSexta":  filter_nogeo,
 }
 
 ################################################################################
