@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.update.tv" name="Update TV Channels" version="1.0.1" provider-name="MiCHaEL">
+	<requires>
+		<import addon="xbmc.python" version="2.14.0"/>
+	</requires>
+	<extension point="xbmc.python.script" library="addon.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en">Update Spanish TV and Radio Channels</summary>
+		<description lang="en">Update Spanish TV and Radio Channels for PVR IPTV Simple Client addon</description>
+		<license>GNU General Public License, v2</license>
+		<language></language>
+		<source>https://github.com/michaelnpsp/script.update.tv</source>
+		<website>nospam</website>
+		<email>nospam@nospam.com</email>
+		<assets>
+			<icon>icon.png</icon>
+		</assets>
+		<news></news>
+	</extension>
+    <extension point="xbmc.addon.repository" name="MiCHaEL Personal Repository">
+        <dir>
+            <info compressed="false">https://raw.githubusercontent.com/michaelnpsp/kodiaddons/master/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/michaelnpsp/kodiaddons/master/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/michaelnpsp/kodiaddons/master/zips/</datadir>
+        </dir>
+    </extension>	
+</addon>
+
+
