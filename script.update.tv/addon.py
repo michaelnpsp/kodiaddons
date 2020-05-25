@@ -28,8 +28,8 @@ addonNewVersion = addonVersion!=tools.load_file(lastVersionFile)
 ################################################################################
 
 # init some stuff
-if addonNewVersion: tools.save_file(lastVersionFile, addonVersion)
 if not os.path.exists(profileFolder): os.makedirs(profileFolder)
+if addonNewVersion: tools.save_file(lastVersionFile, addonVersion)
 
 # progress dialog
 progress = xbmcgui.DialogProgress()

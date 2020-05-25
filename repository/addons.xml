@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="script.update.tv" name="Update TV Channels" version="1.0.3" provider-name="MiCHaEL">
+<addon id="script.update.tv" name="Update TV Channels" version="1.0.4" provider-name="MiCHaEL">
 	<requires>
 		<import addon="xbmc.python" version="2.14.0"/>
 	</requires>
