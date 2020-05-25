@@ -6,10 +6,6 @@
 #   television-sd.m3u8 (SD channels playlist)
 ################################################################################
 
-URLCHANNELS = "http://www.tdtchannels.com/lists/combo_channels.m3u8"
-
-########################################################
-
 import os
 import tools
 import filter
@@ -27,7 +23,7 @@ m3uFileSD = os.path.join( profileFolder, 'television-sd.m3u8')
 
 if not os.path.exists(profileFolder): os.makedirs(profileFolder)
 
-newdata = tools.download_url(URLCHANNELS, m3uFile)
+newdata = tools.download_channels(m3uFile)
 
 print( newdata and "New internet playlist downloaded!" or "Playlist already updated nothing to download!" )
 

@@ -1,4 +1,10 @@
 #################################################
+# config
+#################################################
+
+URLCHANNELS = "http://www.tdtchannels.com/lists/combo_channels.m3u8"
+
+#################################################
 # misc functions
 #################################################
 
@@ -27,3 +33,7 @@ def download_url(url, dstfile=None):
 		if data == load_file(dstfile): return None
 		save_file(dstfile,data)
 	return data
+
+def download_channels(dstfile):
+	return download_url(URLCHANNELS, dstfile)
+	
