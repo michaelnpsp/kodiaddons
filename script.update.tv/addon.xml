@@ -23,7 +23,7 @@
     <extension point="xbmc.addon.repository" name="MiCHaEL Personal Repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/michaelnpsp/kodiaddons/master/repository/addons.xml</info>
-            <checksum>               https://raw.githubusercontent.com/michaelnpsp/kodiaddons/master/repository/addons.xml.md5</checksum>
+            <checksum>https://raw.githubusercontent.com/michaelnpsp/kodiaddons/master/repository/addons.xml.md5</checksum>
             <datadir zip="true">https://raw.githubusercontent.com/michaelnpsp/kodiaddons/master/repository/zips/</datadir>
         </dir>
     </extension>	
