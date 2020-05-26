@@ -2,7 +2,9 @@
 # config
 #################################################
 
-URLCHANNELS = "http://www.tdtchannels.com/lists/combo_channels.m3u8"
+CHANURL = "http://www.tdtchannels.com/lists/combo_channels.m3u8"
+
+EPGURL  = "https://www.tdtchannels.com/epg/TV.xml"
 
 #################################################
 # misc functions
@@ -35,5 +37,5 @@ def download_url(url, dstfile=None):
 	return data
 
 def download_channels(dstfile):
-	return download_url(URLCHANNELS, dstfile)
+	return download_url(CHANURL, dstfile)
 	

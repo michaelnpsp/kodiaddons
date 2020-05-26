@@ -56,4 +56,6 @@ if pvraddon:
 	update = True
 	if pvraddon.getSetting("m3uPathType")!="0":        update = pvraddon.setSetting("m3uPathType","0")
 	if pvraddon.getSetting("m3uPath")!=chanFileOutput: update = pvraddon.setSetting("m3uPath", chanFileOutput)
+	if pvraddon.getSetting("epgPathType")!="1":        update = pvraddon.setSetting("epgPathType","1")
+	if pvraddon.getSetting("epgUrl")!=tools.EPGURL:    update = pvraddon.setSetting("epgUrl", tools.EPGURL)
 	if update:                                  	   pvraddon.setSetting("m3uPathType","0")
