@@ -44,7 +44,7 @@ if not tools.download_channels(chanFileInput) and not addonNewVersion:
 
 # execute filter
 progress.update(50,"Actualizando canales de TV y Radio")
-filter.run( chanFileInput, chanFileOutput, True )
+filter.run( chanFileInput, chanFileOutput, "HD" )
 time.sleep(1)
 
 # update pvr addon settings

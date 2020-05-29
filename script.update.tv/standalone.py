@@ -28,8 +28,8 @@ newdata = tools.download_channels(m3uFile)
 print( newdata and "New internet playlist downloaded!" or "Playlist already updated nothing to download!" )
 
 if newdata or not os.path.exists(m3uFileHD): 
-	filter.run( m3uFile, m3uFileHD, True )
+	filter.run( m3uFile, m3uFileHD, 'HD' )
 	print( "New HD m3u8 file created: " + m3uFileHD )
 if newdata or not os.path.exists(m3uFileSD): 
-	filter.run( m3uFile, m3uFileSD, False )
+	filter.run( m3uFile, m3uFileSD, 'SD' )
 	print( "New SD m3u8 file created: " + m3uFileSD )
