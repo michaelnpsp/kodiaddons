@@ -56,6 +56,24 @@ blacklist = {
 # Unicode subscripts
 subscripts = u"\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089*********"
 
+# Extra channels to include
+extrachannels = """
+#EXTINF:-1 tvg-id="Telecinco.TV" tvg-logo="https://graph.facebook.com/tele5/picture?width=200&height=200" group-title="Generalistas" tvg-name="Telecinco",Telecinco
+https://linear01-i.akamaihd.net/hls/live/837810/telecinco/master.m3u8
+#EXTINF:-1 tvg-id="Cuatro.TV" tvg-logo="https://graph.facebook.com/cuatro/picture?width=200&height=200" group-title="Generalistas" tvg-name="Cuatro",Cuatro
+https://linear02-i.akamaihd.net/hls/live/837811/cuatro/master.m3u8
+#EXTINF:-1 tvg-id="FDF.TV" tvg-logo="https://graph.facebook.com/factoriadeficcion/picture?width=200&height=200" group-title="Generalistas" tvg-name="FDF",FDF
+https://linear02-i.akamaihd.net/hls/live/837813/fdf/master.m3u8
+#EXTINF:-1 tvg-id="Energy.TV" tvg-logo="https://graph.facebook.com/E.EnergyTV/picture?width=200&height=200" group-title="Generalistas" tvg-name="Energy",Energy
+https://linear02-i.akamaihd.net/hls/live/837816/energy/master.m3u8
+#EXTINF:-1 tvg-id="Divinity.TV" tvg-logo="https://graph.facebook.com/divinityes/picture?width=200&height=200" group-title="Generalistas" tvg-name="Divinity",Divinity
+https://linear01-i.akamaihd.net/hls/live/837812/divinity/master.m3u8
+#EXTINF:-1 tvg-id="Bemad.TV" tvg-logo="https://graph.facebook.com/BeMadTV/picture?width=200&height=200" group-title="Generalistas" tvg-name="Be Mad",Be Mad
+https://linear02-i.akamaihd.net/hls/live/837815/bemad/master.m3u8
+#EXTINF:-1 tvg-id="Boing.TV" tvg-logo="https://graph.facebook.com/boinges/picture?width=200&height=200" group-title="Generalistas" tvg-name="Boing",Boing
+https://linear01-i.akamaihd.net/hls/live/837814/boing/master.m3u8
+""".strip()+"\n"
+
 ################################################################################
 
 def unpack(t,c):
@@ -71,6 +89,9 @@ def replace(group, str):
 	return r and re.sub(r.group(1), group, str) or str
 
 def run(file_src, file_dst, suffix):
+
+	if extrachannels!="\n":
+		with io.open(file_src,'a',encoding="utf8") as f: f.write(extrachannels)
 
 	orders = {}
 	result = []
