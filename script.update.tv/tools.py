@@ -6,24 +6,36 @@ CHANURL = "http://www.tdtchannels.com/lists/combo_channels.m3u8"
 
 EPGURL  = "https://www.tdtchannels.com/epg/TV.xml"
 
+KODICMD = "c:\kodi\kodi.exe -p"
+
 #################################################
 # misc functions
 #################################################
 
 import os
 import sys
+import platform
+import subprocess
+import xbmc
+import xbmcaddon
+
+def translatePath(path):
+	return xbmc.translatePath(path) if sys.version_info[0]>=3 else xbmc.translatePath(path).decode('utf-8')
+
+def getAddonFolder(key):
+	return translatePath( xbmcaddon.Addon().getAddonInfo(key) )
 
 def load_file(filename):
 	if not os.path.exists(filename): return None
 	f = open(filename, "rb")
 	d = f.read()
-	f.close()	
+	f.close()
 	return d
 
 def save_file(filename, content):
 	f = open(filename, "wb")
 	f.write(content)
-	f.close()	
+	f.close()
 
 def download_url(url, dstfile=None):
 	if sys.version_info[0]<3:
@@ -38,4 +50,10 @@ def download_url(url, dstfile=None):
 
 def download_channels(dstfile):
 	return download_url(CHANURL, dstfile)
-	
+
+def restart_kodi(cmd=None):
+	if platform.system() == 'Windows':
+		subprocess.Popen(['cscript', os.path.join(getAddonFolder('path'),'waitexec.vbs'), cmd or KODICMD],close_fds=True, creationflags=0x00000208)
+		xbmc.executebuiltin('XBMC.Quit()')
+	else:
+		xbmc.executebuiltin('XBMC.RestartApp()')

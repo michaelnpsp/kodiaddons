@@ -14,42 +14,43 @@ def L2D(list): return { list[i]:i*100 for i in range(0, len(list)) }
 
 # TV Channels to filter (remove duplicates and select HD/SD channel if possible), non whitelisted channels are saved unmodified
 channels = L2D([
-	"La 1",             
-	"La 2",             
-	"Antena 3",         
-	"Cuatro",           
-	"Telecinco",        
-	"laSexta",          
-	"TVG",              
-	"TVG 2",            
-	"Neox",             
-	"Nova",             
-	"Mega",             
-	"Atreseries",       
-	"FDF",              
-	"Energy",           
-	"Divinity",         
+	"La 1",
+	"La 2",
+	"Antena 3",
+	"Cuatro",
+	"Telecinco",
+	"laSexta",
+	"TVG",
+	"TVG 2",
+	"Neox",
+	"Nova",
+	"Mega",
+	"Atreseries",
+	"FDF",
+	"Energy",
+	"Divinity",
 	"Be Mad",
-	"mtmad 24h",	
 	"Paramount Network",
-	"Boing",            
-	"Teledeporte",      
-	"24h",           
+	"Boing",
+	"Clan",
+	"mtmad 24h",
+	"Teledeporte",
+	"24h",
 ])
 
 # TV Channels to ignore because they are not working, strings are the tvg-name last text in EXTINF line
 # True = channel is removed  False = Generales group channels are moved to Alternatives group
 blacklist = {
   "Antena 3 GEO":   False,
-  "laSexta GEO":    False, 
-  "Neox": 			True,		
-  "Nova": 			True,		
-  "Mega": 			True,		
+  "laSexta GEO":    False,
+  "Neox": 			True,
+  "Nova": 			True,
+  "Mega": 			True,
   "+tdp": 			True,
-  "+24":  			True,		
+  "+24":  			True,
   "Nius HD":	    True,
   "Nius SD":	    True,
-  "Disney Channel": True,  
+  "Disney Channel": True,
 }
 
 # Unicode subscripts
@@ -65,7 +66,7 @@ def order(key, orders, base):
 	orders[key] = (orders.get(key) or 0) + 1
 	return base + orders[key]
 
-def rep(group, str):
+def replace(group, str):
 	r = re.match('.+group\-title=(".+?")', str)
 	return r and re.sub(r.group(1), group, str) or str
 
@@ -79,7 +80,7 @@ def run(file_src, file_dst, suffix):
 
 	fw.write( fr.readline() )
 	fw.write( fr.readline() )
-	
+
 	for i in range(10000, 1000000):
 		inf = fr.readline()
 		url = fr.readline()
@@ -90,10 +91,11 @@ def run(file_src, file_dst, suffix):
 			if channels.get(name)!=None:
 				suf = unpack(re.match('.+(HD|SD|GEO)$',desc), 1) or ''
 				if (suf==suffix or (suf!='HD' and suf!='SD')) and blacklist.get(desc)==None:
-					inf = rep( '"Generalistas"', re.sub( ' %s$' % suf, '', inf) )
+					inf = replace( '"Generalistas"', re.sub( ' %s$' % suf, '', inf) )
 					result.append( ( order(name,orders,channels.get(name)), name, inf, url ) )
 				else:
-					result.append( ( i, name, rep('"Alternativas"',inf), url ) )
+					inf = replace('"Alternativas"',inf)
+					result.append( ( i, name, inf, url ) )
 			else:
 				result.append( ( i, name, inf, url ) )
 
@@ -102,6 +104,6 @@ def run(file_src, file_dst, suffix):
 	for idx, nam, inf, url in result:
 		fw.write( (orders.get(nam) or 0)>1 and re.sub('\n$','%s\n' % subscripts[idx%100], inf) or inf )
 		fw.write( url )
-	
+
 	fr.close()
 	fw.close()

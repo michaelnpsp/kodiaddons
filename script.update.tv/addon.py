@@ -1,28 +1,27 @@
 ################################################################################
 # Download and process tv channel playlists m3u8 file from:
 #   https://github.com/LaQuay/TDTChannels
-# Creates a new channels.m3u8 playlist and configure PVR IPTV Simple Client Addon 
+# Creates a new channels.m3u8 playlist and configure PVR IPTV Simple Client Addon
 # to use the new playlist
 ################################################################################
 
 import os
 import time
+
 import xbmc
 import xbmcgui
 import xbmcaddon
+
 import tools
 import filter
-
-def translatePath(path): return xbmc.translatePath(path) if sys.version_info[0]>=3 else xbmc.translatePath(path).decode('utf-8')
 
 addon           = xbmcaddon.Addon()
 addonName       = addon.getAddonInfo('name')
 addonVersion    = addon.getAddonInfo('version')
-addonFolder     = translatePath( addon.getAddonInfo('path') )
-profileFolder   = translatePath( addon.getAddonInfo('profile') )
-chanFileInput   = profileFolder+'channels_downloaded.m3u8'
-chanFileOutput  = profileFolder+'channels.m3u8'
-lastVersionFile = profileFolder+'version.txt'
+profileFolder   = tools.getAddonFolder('profile')
+chanFileInput   = os.path.join(profileFolder, 'channels_downloaded.m3u8')
+chanFileOutput  = os.path.join(profileFolder, 'channels.m3u8')
+lastVersionFile = os.path.join(profileFolder, 'version.txt')
 addonNewVersion = addonVersion!=tools.load_file(lastVersionFile)
 
 ################################################################################
@@ -58,4 +57,5 @@ if pvraddon:
 	if pvraddon.getSetting("m3uPath")!=chanFileOutput: update = pvraddon.setSetting("m3uPath", chanFileOutput)
 	if pvraddon.getSetting("epgPathType")!="1":        update = pvraddon.setSetting("epgPathType","1")
 	if pvraddon.getSetting("epgUrl")!=tools.EPGURL:    update = pvraddon.setSetting("epgUrl", tools.EPGURL)
-	if update:                                  	   pvraddon.setSetting("m3uPathType","0")
+#	if update:                                  	   pvraddon.setSetting("m3uPathType","0")
+	tools.restart_kodi()
