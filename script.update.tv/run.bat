@@ -1,5 +1,5 @@
 @echo off
 
-python3 standalone.py
+python2 standalone.py
 
 pause
