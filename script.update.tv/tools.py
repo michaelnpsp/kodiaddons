@@ -12,12 +12,15 @@ KODICMD = "c:\kodi\kodi.exe -p"
 # misc functions
 #################################################
 
+
 import os
 import sys
 import platform
 import subprocess
-import xbmc
-import xbmcaddon
+try: # in standalone mode there are no xbmc modules
+	import xbmc
+	import xbmcaddon
+except:	pass
 
 def translatePath(path):
 	return xbmc.translatePath(path) if sys.version_info[0]>=3 else xbmc.translatePath(path).decode('utf-8')
