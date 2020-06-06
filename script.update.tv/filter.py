@@ -100,14 +100,13 @@ def run(file_src, file_dst, suffix):
 	with io.open(file_src,'r',encoding='utf8') as f: fr = StringIO(extrachannels+f.read())
 	fw = io.open( file_dst, "w", encoding="utf8" )
 
-	fw.write( fr.readline() )
-	fw.write( fr.readline() )
-
-	for i in range(10000, 1000000):
+	for i in range(10000, 10000000):
 		inf = fr.readline()
+		if not inf: break
+		if inf[0:8]!="#EXTINF:": continue
 		url = fr.readline()
 		if url and url[0:11]=="#EXTVLCOPT:": url = fr.readline()
-		if not (inf and url): break
+		if not url: break
 		name, desc = unpack( re.match('^.+tvg\-name="(.+)",(.+)$',inf), 2 )
 		if name and blacklist.get(desc)!=True:
 			if channels.get(name)!=None:

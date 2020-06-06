@@ -26,12 +26,13 @@ if not os.path.exists(profileFolder): os.makedirs(profileFolder)
 newdata = tools.download_channels(m3uFile)
 print( newdata and "New playlist downloaded!" or "Playlist is up to date!" )
 
-newfilter = tools.download_filter(filterFile)
-print( newfilter and "New filter downloaded!" or "Filter is up to date!" )
+# In standalone mode always use the local filter
+# newfilter = tools.download_filter(filterFile)
+# print( newfilter and "New filter downloaded!" or "Filter is up to date!" )
 
 if newdata or newfilter or not os.path.exists(m3uFileHD):
-	tools.load_module('filter_').run( m3uFile, m3uFileHD, 'HD' )
+	tools.load_module('filter').run( m3uFile, m3uFileHD, 'HD' )
 	print( "New HD m3u8 file created: " + m3uFileHD )
 if newdata or newfilter or not os.path.exists(m3uFileSD):
-	tools.load_module('filter_').run( m3uFile, m3uFileSD, 'SD' )
+	tools.load_module('filter').run( m3uFile, m3uFileSD, 'SD' )
 	print( "New SD m3u8 file created: " + m3uFileSD )
