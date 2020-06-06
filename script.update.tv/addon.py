@@ -23,6 +23,8 @@ chanFileInput   = os.path.join(profileFolder, 'channels_downloaded.m3u8')
 chanFileOutput  = os.path.join(profileFolder, 'channels.m3u8')
 lastVersionFile = os.path.join(profileFolder, 'version.txt')
 addonNewVersion = addonVersion!=tools.load_file(lastVersionFile)
+addonFolder     = tools.getAddonFolder('path')
+filterFile      = os.path.join(addonFolder, 'filter_.py')
 
 ################################################################################
 
@@ -36,14 +38,18 @@ progress = xbmcgui.DialogProgress()
 # download channels m3u8 file
 progress.create(addonName,"Buscando canales actualizados en internet", '', 'Por favor espere')
 time.sleep(1)
-if not tools.download_channels(chanFileInput) and not addonNewVersion:
+
+newChannels = tools.download_channels(chanFileInput)
+newFilter   = tools.download_filter(filterFile)
+
+if not ( newChannels or newFilter or addonNewVersion ):
 	progress.close()
 	xbmcgui.Dialog().ok(addonName, "No hay canales nuevos que actualizar.")
 	exit()
 
 # execute filter
 progress.update(50,"Actualizando canales de TV y Radio")
-filter.run( chanFileInput, chanFileOutput, "HD" )
+tools.load_module('filter_').run( chanFileInput, chanFileOutput, "HD" )
 time.sleep(1)
 
 # update pvr addon settings

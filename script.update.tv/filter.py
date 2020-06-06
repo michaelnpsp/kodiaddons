@@ -9,6 +9,10 @@
 import os
 import io
 import re
+try:
+	from StringIO import StringIO
+except ImportError:
+	from io import StringIO
 
 def L2D(list): return { list[i]:i*100 for i in range(0, len(list)) }
 
@@ -53,9 +57,6 @@ blacklist = {
   "Disney Channel": True,
 }
 
-# Unicode subscripts
-subscripts = u"\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089*********"
-
 # Extra channels to include
 extrachannels =u"""
 #EXTINF:-1 tvg-id="Telecinco.TV" tvg-logo="https://graph.facebook.com/tele5/picture?width=200&height=200" group-title="Generalistas" tvg-name="Telecinco",Telecinco
@@ -74,6 +75,9 @@ https://linear02-i.akamaihd.net/hls/live/837815/bemad/master.m3u8
 https://linear01-i.akamaihd.net/hls/live/837814/boing/master.m3u8
 """.strip()+u"\n"
 
+# Unicode subscripts
+subscripts = u"\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089*********"
+
 ################################################################################
 
 def unpack(t,c):
@@ -90,13 +94,10 @@ def replace(group, str):
 
 def run(file_src, file_dst, suffix):
 
-	if extrachannels!="\n":
-		with io.open(file_src,'a',encoding="utf8") as f: f.write(extrachannels)
-
 	orders = {}
 	result = []
 
-	fr = io.open( file_src, "r", encoding="utf8" )
+	with io.open(file_src,'r',encoding='utf8') as f: fr = StringIO(extrachannels+f.read())
 	fw = io.open( file_dst, "w", encoding="utf8" )
 
 	fw.write( fr.readline() )
