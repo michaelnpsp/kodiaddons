@@ -29,6 +29,7 @@ print( newdata and "New playlist downloaded!" or "Playlist is up to date!" )
 # In standalone mode always use the local filter
 # newfilter = tools.download_filter(filterFile)
 # print( newfilter and "New filter downloaded!" or "Filter is up to date!" )
+newfilter = True
 
 if newdata or newfilter or not os.path.exists(m3uFileHD):
 	tools.load_module('filter').run( m3uFile, m3uFileHD, 'HD' )

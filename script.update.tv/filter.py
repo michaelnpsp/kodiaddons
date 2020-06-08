@@ -59,20 +59,6 @@ blacklist = {
 
 # Extra channels to include
 extrachannels =u"""
-#EXTINF:-1 tvg-id="Telecinco.TV" tvg-logo="https://graph.facebook.com/tele5/picture?width=200&height=200" group-title="Generalistas" tvg-name="Telecinco",Telecinco
-https://linear01-i.akamaihd.net/hls/live/837810/telecinco/master.m3u8
-#EXTINF:-1 tvg-id="Cuatro.TV" tvg-logo="https://graph.facebook.com/cuatro/picture?width=200&height=200" group-title="Generalistas" tvg-name="Cuatro",Cuatro
-https://linear02-i.akamaihd.net/hls/live/837811/cuatro/master.m3u8
-#EXTINF:-1 tvg-id="FDF.TV" tvg-logo="https://graph.facebook.com/factoriadeficcion/picture?width=200&height=200" group-title="Generalistas" tvg-name="FDF",FDF
-https://linear02-i.akamaihd.net/hls/live/837813/fdf/master.m3u8
-#EXTINF:-1 tvg-id="Energy.TV" tvg-logo="https://graph.facebook.com/E.EnergyTV/picture?width=200&height=200" group-title="Generalistas" tvg-name="Energy",Energy
-https://linear02-i.akamaihd.net/hls/live/837816/energy/master.m3u8
-#EXTINF:-1 tvg-id="Divinity.TV" tvg-logo="https://graph.facebook.com/divinityes/picture?width=200&height=200" group-title="Generalistas" tvg-name="Divinity",Divinity
-https://linear01-i.akamaihd.net/hls/live/837812/divinity/master.m3u8
-#EXTINF:-1 tvg-id="Bemad.TV" tvg-logo="https://graph.facebook.com/BeMadTV/picture?width=200&height=200" group-title="Generalistas" tvg-name="Be Mad",Be Mad
-https://linear02-i.akamaihd.net/hls/live/837815/bemad/master.m3u8
-#EXTINF:-1 tvg-id="Boing.TV" tvg-logo="https://graph.facebook.com/boinges/picture?width=200&height=200" group-title="Generalistas" tvg-name="Boing",Boing
-https://linear01-i.akamaihd.net/hls/live/837814/boing/master.m3u8
 """.strip()+u"\n"
 
 # Unicode subscripts
