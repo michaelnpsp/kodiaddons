@@ -7,11 +7,12 @@
 ################################################################################
 
 import os
+import sys
 import tools
 
 ########################################################
 
-profileFolder = os.path.join( os.path.expanduser("~"), "Television" )
+profileFolder = sys.argv[1] if len(sys.argv)>1 else os.path.join( os.path.expanduser("~"), "Television" )
 m3uFile   = os.path.join( profileFolder, 'channels.m3u8' )
 m3uFileHD = os.path.join( profileFolder, 'television-hd.m3u8' )
 m3uFileSD = os.path.join( profileFolder, 'television-sd.m3u8' )
