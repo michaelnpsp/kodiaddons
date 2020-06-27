@@ -3,4 +3,4 @@
 ################################################################################
 
 import os
-os.system("taskkill /f /im chrome.exe" /t")
+os.system("taskkill /im chrome.exe")
