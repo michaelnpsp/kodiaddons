@@ -2,7 +2,7 @@
 # config
 #################################################
 
-CHANURL = "http://www.tdtchannels.com/lists/combo_channels.m3u8"
+CHANURL = "https://www.tdtchannels.com/lists/tvradio.m3u8"
 
 FILURL  = "https://raw.githubusercontent.com/michaelnpsp/kodiaddons/master/script.update.tv/filter.py"
 
